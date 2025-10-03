@@ -13,12 +13,22 @@ def calculate(operation, num1, num2=None):
             result = add(num1, num2)
         elif operation == 'subtract':
             result = subtract(num1, num2)
+        elif operation == 'multiply':
+            result = multiply(num1, num2)
+        elif operation == 'divide':
+            result = divide(num1, num2)
+        elif operation == 'power':
+            result = power(num1, num2)
+        elif operation == 'square_root':
+            if num1 is None:
+                raise ValueError("num1 is required for square_root")
+            result = square_root(num1)
         else:
             click.echo(f"Unknown operation: {operation}")
             sys.exit(1)
 
         # Format result nicely
-        if result == int(result):
+        if isinstance(result, float) and result.is_integer():
             click.echo(int(result))
         else:
             click.echo(f"{result:.2f}")
